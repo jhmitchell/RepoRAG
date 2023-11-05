@@ -1,0 +1,5 @@
+data/
+llm_faiss_index/
+
+.env
+*.log
