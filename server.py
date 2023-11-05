@@ -46,7 +46,8 @@ loader = GitLoader(
 documents = loader.load()
 print(f"Loaded {len(documents)} documents on branch main.")
 
-chunk_size_value = 3000
+SIMILARITY_K = 4
+chunk_size_value = 2000
 chunk_overlap = 200
 text_splitter = RecursiveCharacterTextSplitter(
     chunk_size=chunk_size_value, chunk_overlap=chunk_overlap, length_function=len)
@@ -105,7 +106,7 @@ map_rerank_chain = (
 
 
 def getanswer(query):
-    relevant_chunks = docembeddings.similarity_search_with_score(query, k=2)
+    relevant_chunks = docembeddings.similarity_search_with_score(query, k=SIMILARITY_K)
     chunk_docs = [chunk[0] for chunk in relevant_chunks]
     results = map_rerank_chain.invoke({"docs": chunk_docs, "question": query})
     text_reference = "\n\n".join(doc.page_content for doc in chunk_docs)
