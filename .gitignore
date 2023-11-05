@@ -3,3 +3,6 @@ llm_faiss_index/
 
 .env
 *.log
+
+.venv
+__pycache__/

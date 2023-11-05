@@ -7,7 +7,7 @@ st.write("Ask a question about the repo, and I'll do my best to answer it.")
 question = st.text_input('Type your question here:')
 
 if question:
-    url = 'http://localhost:5000/reporag'
+    url = 'http://localhost:6000/reporag'
     payload = {"query": question}
     
     response = requests.post(url, json=payload)
